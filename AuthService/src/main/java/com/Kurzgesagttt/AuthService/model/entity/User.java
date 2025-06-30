@@ -1,7 +1,9 @@
 package com.Kurzgesagttt.AuthService.model.entity;
 
+import com.Kurzgesagttt.AuthService.model.dto.LoginRequestDTO;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -31,4 +33,10 @@ public class User {
 
     @CreationTimestamp
     private Timestamp creationDate;
+
+    public boolean isLoginCorrect(LoginRequestDTO loginRequest, PasswordEncoder passwordEncoder){
+        return passwordEncoder.matches(loginRequest.password(), this.password);
+    }
+
+
 }
