@@ -1,10 +1,9 @@
 package com.Kurzgesagttt.AuthService.controller;
 
 import com.Kurzgesagttt.AuthService.mapper.UserMapper;
-import com.Kurzgesagttt.AuthService.model.dto.LoginRequestDTO;
+import com.Kurzgesagttt.AuthService.model.dto.CreateUserRequestDTO;
 import com.Kurzgesagttt.AuthService.model.entity.User;
 import com.Kurzgesagttt.AuthService.service.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,10 +21,12 @@ public class UserController {
     private UserMapper userMapper;
 
     @PostMapping
-    public ResponseEntity<Void> createUser(@RequestBody LoginRequestDTO dto){
+    public ResponseEntity<Void> createUser(@RequestBody CreateUserRequestDTO dto){
             User newUser = userMapper.convertToEntity(dto);
 
             userService.createUser(newUser);
         return ResponseEntity.ok().build();
     }
+
+
 }
