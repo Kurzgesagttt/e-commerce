@@ -29,7 +29,7 @@ Responsável pela autenticação e gestão de usuários.
 - Segurança configurada com **Spring Security**
 - Validação de tokens para acesso aos outros serviços
 - Endpoints públicos para login e registro
-- Endpoints protegidos por roles (`USER`, `ADMIN`)
+- Endpoints protegidos por roles (`USER`,`SELLER`, `ADMIN`)
 
 ### 📦 OrderService
 Gerencia pedidos e compras dos usuários.
