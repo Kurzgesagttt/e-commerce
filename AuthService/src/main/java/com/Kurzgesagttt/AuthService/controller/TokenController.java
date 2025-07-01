@@ -19,10 +19,6 @@ public class TokenController {
     @Autowired
     private LoginServiceImpl loginService;
 
-    public TokenController(JwtEncoder jwtEncoder){
-        this.jwtEncoder = jwtEncoder;
-    }
-
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO){
 

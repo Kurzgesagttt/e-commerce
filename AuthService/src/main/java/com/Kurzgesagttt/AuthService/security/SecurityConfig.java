@@ -1,4 +1,5 @@
 package com.Kurzgesagttt.AuthService.security;
+
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -6,7 +7,7 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.annotation.Immutable;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,6 +19,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.net.http.HttpRequest;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
@@ -33,7 +35,9 @@ public class SecurityConfig {
     //teste
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-            http.authorizeHttpRequests(auth -> auth.anyRequest())
+            http.authorizeHttpRequests(auth -> auth
+                            .requestMatchers(HttpMethod.POST,"/login").permitAll()
+                            .anyRequest().authenticated())
                     .csrf(csrf -> csrf.disable())
                     .oauth2ResourceServer(oauth2 -> oauth2
                             .jwt(Customizer.withDefaults()))
