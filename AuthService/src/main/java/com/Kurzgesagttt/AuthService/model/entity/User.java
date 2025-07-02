@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,19 +24,19 @@ public class User {
     @Column(name = "user_id")
     private UUID id;
 
-    @Column(name = "frist_name")
+    @Column(name = "first_name",nullable = false)
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email",unique = true)
+    @Column(name = "email",unique = true,nullable = false)
     private String email;
 
-    @Column(name = "cpf",unique = true)
+    @Column(name = "cpf",unique = true,nullable = false)
     private String cpf;
 
-    @Column(name = "password")
+    @Column(name = "password",nullable = false)
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

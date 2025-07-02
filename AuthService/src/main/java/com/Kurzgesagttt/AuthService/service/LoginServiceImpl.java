@@ -28,7 +28,7 @@ public class LoginServiceImpl {
 
         var user = userRepository.findByEmail(loginRequest.email());
 
-        if (user.isEmpty() || user.get().isLoginCorrect(loginRequest, bCryptPasswordEncoder) ){
+        if (user.isEmpty() || !user.get().isLoginCorrect(loginRequest, bCryptPasswordEncoder) ){
             throw new BadCredentialsException("Email or password is invalid");
         }
         var now = Instant.now();
